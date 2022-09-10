@@ -1,6 +1,6 @@
 # from django.shortcuts import render
 # from django.http import Http404
-from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView
 
 from .forms import NotesForm
 from .models import Notes
@@ -10,6 +10,12 @@ class NotesCreateView(CreateView):
     model = Notes
     success_url = '/smart/notes'
     # form_class can be passed instead of 'fields' to allow for more powerful validation
+    form_class = NotesForm
+
+
+class NotesUpdateView(UpdateView):
+    model = Notes
+    success_url = '/smart/notes'
     form_class = NotesForm
 
 
