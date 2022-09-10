@@ -1,19 +1,22 @@
 # from django.shortcuts import render
 # from django.http import Http404
-from django.views.generic import DetailView, ListView
+from django.views.generic import CreateView, DetailView, ListView
 
+from .forms import NotesForm
 from .models import Notes
+
+
+class NotesCreateView(CreateView):
+    model = Notes
+    success_url = '/smart/notes'
+    # form_class can be passed instead of 'fields' to allow for more powerful validation
+    form_class = NotesForm
 
 
 class NotesListView(ListView):
     model = Notes
     context_object_name = "notes"
     template_name = "notes/notes_list.html"
-
-# This has been replaced with the NotesListView class to make this a "class based view"
-# def list(request):
-#     all_notes = Notes.objects.all()
-#     return render(request, 'notes/notes_list.html', {'notes': all_notes})
 
 
 class NotesDetailView(DetailView):

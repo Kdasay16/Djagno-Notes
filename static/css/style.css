@@ -1,3 +1,3 @@
-.note-li {
-    color: blueviolet;
+ul.errorlist {
+    display: none;
 }
