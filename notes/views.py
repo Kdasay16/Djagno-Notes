@@ -13,7 +13,7 @@ class NotesCreateView(CreateView):
     success_url = '/smart/notes'
     # form_class can be passed instead of 'fields' to allow for more powerful validation
     form_class = NotesForm
-    login_url = "/admin"
+    login_url = "/login"
 
     def form_valid(self, form):
         # commit=False creates the object, but doesn't save it to the database
@@ -28,20 +28,20 @@ class NotesUpdateView(UpdateView):
     model = Notes
     success_url = '/smart/notes'
     form_class = NotesForm
-    login_url = "/admin"
+    login_url = "/login"
 
 
 class NotesDeleteView(DeleteView):
     model = Notes
     success_url = '/smart/notes'
-    login_url = "/admin"
+    login_url = "/login"
 
 
 class NotesListView(LoginRequiredMixin, ListView):
     model = Notes
     context_object_name = "notes"
     template_name = "notes/notes_list.html"
-    login_url = "/admin"
+    login_url = "/login"
 
     def get_queryset(self):  # get_queryset is a django method, used to get all USER notes
         return self.request.user.notes.all()
@@ -50,7 +50,7 @@ class NotesListView(LoginRequiredMixin, ListView):
 class NotesDetailView(DetailView):
     model = Notes
     context_object_name = "note"
-    login_url = "/admin"
+    login_url = "/login"
 
 # This "function-based view" has been replaced with the NotesListView class to make this a "class based view"
 # def detail(request, pk):  # pk = private key

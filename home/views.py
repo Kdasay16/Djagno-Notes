@@ -3,7 +3,16 @@ from django.http import HttpResponse
 from datetime import datetime
 from django.views.generic import TemplateView
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView, LogoutView
 # from django.contrib.auth.decorators import login_required
+
+
+class LoginInterfaceView(LoginView):
+    template_name = 'home/login.html'
+
+
+class LogoutInterfaceView(LogoutView):
+    template_name = 'home/logout.html'
 
 
 class HomeView(TemplateView):
@@ -18,7 +27,7 @@ class HomeView(TemplateView):
 
 class AuthorizedView(LoginRequiredMixin, TemplateView):
     template_name = 'home/authorized.html'
-    login_url = '/admin'
+    login_url = '/login'
 
 # This has been replaced with the AuthorizedView class to make this a "class based view"
 # login_required tells django the user must be logged in to view the page
