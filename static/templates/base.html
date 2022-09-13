@@ -15,6 +15,26 @@
     />
   </head>
   <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="ms-auto">
+        {% if user.is_authenticated %}
+        <a class="btn btn-outline-light me-1" href="{% url 'notes.list' %}">
+          Home
+        </a>
+        <a class="btn btn-outline-light me-1" href="{% url 'notes.new' %}">
+          Create
+        </a>
+        <a class="btn btn-outline-light me-1" href="{% url 'logout' %}">
+          Logout
+        </a>
+        {% else %}
+        <a class="btn btn-outline-light me-1" href="{% url 'login' %}">Login</a>
+        <a class="btn btn-outline-light me-1" href="{% url 'signup' %}"
+          >Signup</a
+        >
+        {% endif %}
+      </div>
+    </nav>
     <div class="my-5 text-center container">
       {% block content %} {% endblock %}
     </div>
