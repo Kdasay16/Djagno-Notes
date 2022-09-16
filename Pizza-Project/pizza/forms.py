@@ -16,6 +16,7 @@ class PizzaForm(forms.ModelForm):
 
     # size = forms.ModelChoiceField(
     #     queryset=Size.objects, empty_label=None, widget=forms.RadioSelect)
+    # email = forms.EmailField()
 
     class Meta:
         model = Pizza
