@@ -1,4 +1,9 @@
-<h1>Order a Pizza</h1>
+{% extends "base.html" %}
+{% block content %}
+
+{% load widget_tweaks %}
+
+<h1 class="my-5 text-center">Order a Pizza</h1>
 
 <h2>{{ note }}</h2>
 {% if created_pizza_pk %}
@@ -7,19 +12,14 @@
 
 <form action="{% url 'order' %}" method="post">
   {% csrf_token %}
-  
-  {{ pizzaform.topping1.label_tag }}
-  {{ pizzaform.topping1 }}
-  {{ pizzaform.topping1.errors }}
-
-  {{ pizzaform.topping2.label_tag }}
-  {{ pizzaform.topping2 }}
-  {{ pizzaform.topping2.errors }}
+  <!-- {{ pizzaform.as_p }} -->
+  {% for field in pizzaform %}
+  <div class="form-group">
+    {{ field.label_tag }}
+    {% render_field field class="form-control" %}
+  </div>
+  {% endfor %}
   <br>
-  <br>
-  <label for="{{ pizzaform.size.id_for_label }}">Size:</label>
-  {{ pizzaform.size }}
-  {{ pizzaform.size.errors }}
   <input type="submit" value="Order Now" />
 </form>
 
@@ -31,3 +31,5 @@ Want more than one pizza?
     {{ multiple_form.as_p }}
   <input type="submit" value="Get Pizzas" />
 </form>
+
+{% endblock %}

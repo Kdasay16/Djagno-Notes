@@ -1,2 +1,9 @@
-<h1>Pizza Palace</h1>
-<a href="{% url 'order' %}">Order a pizza</a>
+{% extends "base.html" %}
+{% block content %}
+
+<div class="text-center">
+    {% load static %}
+    <img src={% static "pizza.png" %} class="img-fluid" alt="Pizza Palace">
+</div>
+
+{% endblock %}
